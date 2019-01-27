@@ -1,4 +1,4 @@
-# android_device_oneplus_nx563j
+# android_device_nubia_nx563j
 Tree for building TWRP for Nubia Z17
 
 ## Kernel Sources
