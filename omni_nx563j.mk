@@ -41,8 +41,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := nubia/NX563J/NX563J:9/PKQ1.181021.001/eng.nubia.20190518.213338:user/release-keys
 
-# Verity
-PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_SUPPORTS_VERITY := true
-PRODUCT_SUPPORTS_VERITY_FEC := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
+$(call inherit-product, build/target/product/verity.mk)
