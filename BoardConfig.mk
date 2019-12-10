@@ -36,6 +36,9 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := kryo
 
+# Fix for OpenGApps
+TARGET_CPU_ABI_LIST := arm64-v8a,armeabi-v7a,armeabi
+
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
