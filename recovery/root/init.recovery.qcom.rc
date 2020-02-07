@@ -30,6 +30,8 @@ on early-init
 on fs
     wait /dev/block/platform/soc/1da4000.ufshc
     symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+
+    # System-as-root
     export ANDROID_ROOT /system_root
 
     chmod 0660 /dev/qseecom
@@ -109,14 +111,9 @@ on property:crypto.ready=0
 on property:crypto.ready=1
     start sbinqseecomd
 
-on property:sys.listeners.registered=true
-    start hwservicemanager
-    start keymaster-3-0
-    start gatekeeper-1-0
-    start servicemanager
-
 on property:vendor.sys.listeners.registered=true
     start hwservicemanager
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
+

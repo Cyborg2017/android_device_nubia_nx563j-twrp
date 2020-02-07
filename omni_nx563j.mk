@@ -24,7 +24,10 @@ $(call inherit-product, vendor/omni/config/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
-    ro.hardware.gatekeeper=msm8998
+    ro.hardware.gatekeeper=msm8998 \
+    sys.usb.controller=a800000.dwc3 \
+    sys.usb.rndis.func.name=gsi \
+    sys.usb.rmnet.func.name=gsi
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := nx563j
