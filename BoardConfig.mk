@@ -37,7 +37,6 @@ TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a9
-TARGET_USES_64_BIT_BINDER := true
 
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
@@ -54,16 +53,18 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE := true
 
 # Kernel
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
+
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 
 BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=2048 androidboot.usbconfigfs=true 
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a800000.dwc3 
 BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET := 0x01000000
+
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
 
 # Platform
@@ -71,7 +72,6 @@ TARGET_BOARD_PLATFORM := msm8998
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno540
 
 # Partitions
-BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -88,9 +88,12 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Workaround for error copying vendor files to recovery ramdisk
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Recovery
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
@@ -98,15 +101,20 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
 # TWRP specific build flags
-BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_NO_REAL_SDCARD := true
-TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_DEFAULT_BRIGHTNESS := 2047
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_NTFS_3G := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_MAX_BRIGHTNESS := 4095
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_THEME := portrait_hdpi
 TW_USE_TOOLBOX := true
+
+# Disable twrp app prompt
+TW_EXCLUDE_TWRPAPP := true

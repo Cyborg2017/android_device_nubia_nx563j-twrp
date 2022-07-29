@@ -18,16 +18,14 @@
 PRODUCT_RELEASE_NAME := nx563j
 
 $(call inherit-product, build/target/product/embedded.mk)
+$(call inherit-product, build/target/product/core_64_bit.mk)
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
-    ro.hardware.gatekeeper=msm8998 \
-    sys.usb.controller=a800000.dwc3 \
-    sys.usb.rndis.func.name=gsi \
-    sys.usb.rmnet.func.name=gsi
+    ro.hardware.gatekeeper=msm8998
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := nx563j
@@ -36,16 +34,10 @@ PRODUCT_BRAND := nubia
 PRODUCT_MODEL := Z17
 PRODUCT_MANUFACTURER := nubia
 
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-PRODUCT_GMS_CLIENTID_BASE := android-zte
-
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX563J PRODUCT_NAME=NX563J
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="NX563J-user 9 PKQ1.181021.001 eng.nubia.20190518.213338 release-keys"
-
-BUILD_FINGERPRINT := nubia/NX563J/NX563J:9/PKQ1.181021.001/eng.nubia.20190518.213338:user/release-keys
-
-$(call inherit-product, build/target/product/verity.mk)
+# Verity
+PRODUCT_SUPPORTS_BOOT_SIGNER := true
+PRODUCT_SUPPORTS_VERITY := true
+PRODUCT_SUPPORTS_VERITY_FEC := true
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity

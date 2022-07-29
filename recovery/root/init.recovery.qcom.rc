@@ -28,8 +28,8 @@ on early-init
     mkdir /firmware 0771 system system
 
 on fs
-    wait /dev/block/platform/soc/1da4000.ufshc
-    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
     # System-as-root
     export ANDROID_ROOT /system_root
@@ -41,10 +41,6 @@ on fs
     install_keyring
 
     setprop crypto.ready 1
-
-on post-fs-data
-    chown system system /sys/bus/i2c/devices/5-0020/wake_gesture
-    write /sys/bus/i2c/devices/5-0020/wake_gesture 1
 
 # Separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
 service sbinqseecomd /sbin/qseecomd
@@ -100,6 +96,10 @@ on boot
     # Enable OTG
     write /sys/devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/usb/otg_switch 1
 
+    # Enable double tap
+    chown system system /sys/bus/i2c/devices/5-0020/wake_gesture
+    write /sys/bus/i2c/devices/5-0020/wake_gesture 1
+
 on property:crypto.ready=0
     stop sbinqseecomd
     stop keymaster-3-0
@@ -116,4 +116,3 @@ on property:vendor.sys.listeners.registered=true
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
-
