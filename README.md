@@ -3,7 +3,7 @@ Tree for building TWRP for Nubia Z17
 
 ## Kernel Sources
 
-https://github.com/RuRuTiaSaMa/kernel_nubia
+https://github.com/Cyborg2017/android_kernel_nubia_msm8998-oss/tree/lineage-20.0
 
 ## To compile
 
