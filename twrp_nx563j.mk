@@ -17,11 +17,11 @@
 # Release name
 PRODUCT_RELEASE_NAME := nx563j
 
-$(call inherit-product, build/target/product/embedded.mk)
-$(call inherit-product, build/target/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
@@ -29,7 +29,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := nx563j
-PRODUCT_NAME := omni_nx563j
+PRODUCT_NAME := twrp_nx563j
 PRODUCT_BRAND := nubia
 PRODUCT_MODEL := Z17
 PRODUCT_MANUFACTURER := nubia

@@ -15,4 +15,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_nx563j.mk
+    $(LOCAL_DIR)/twrp_nx563j.mk
+
+COMMON_LUNCH_CHOICES := \
+    twrp_nx563j-eng \
+    twrp_nx563j-userdebug
