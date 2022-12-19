@@ -1,5 +1,5 @@
 # android_device_nubia_nx563j
-Tree for building TWRP for Nubia Z17 (Decryption works on Android 11 and 12.x ROMs)
+Tree for building TWRP for Nubia Z17 (Decryption works on Android 11/12.x/13.x ROMs)
 
 ## Kernel Sources
 
