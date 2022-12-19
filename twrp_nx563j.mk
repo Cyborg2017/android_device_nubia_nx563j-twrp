@@ -24,6 +24,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# qcom standard decryption
+PRODUCT_PACKAGES += \
+	qcom_decrypt \
+	qcom_decrypt_fbe
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
     ro.hardware.gatekeeper=msm8998
